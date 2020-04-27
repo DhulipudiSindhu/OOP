@@ -1,3 +1,145 @@
+Welcome to World of Cars
+In this assignment we will try to simulate different types of vehicles
+
+# Submission Guidelines
+Create a folder /home/ec2-user/environment/oop/oop_submissions/oop_assignment_001. Make use of the below example command
+$ mkdir -p /home/ec2-user/environment/oop/oop_submissions/oop_assignment_001
+Write all your code in car.py file
+Using the below snippet download a program which should be used to submit code
+$ wget https://itp-tech-training.s3.ap-south-1.amazonaws.com/common_resources/submit_assignment
+$ chmod +x submit_assignment
+To submit your assignment execute the below code snippet in the assignment folder i.e /home/ec2-user/environment/oop/oop_submissions/oop_assignment_001 here
+cloud9$ ./submit_assignment
+On submission you will get results.txt in your assignment folder. results.txt gives you the test case results.
+# Task1: Creating a Car Template
+A car is described by its color, max_speed, acceleration and tyre_friction.
+
+Coding Guidelines:
+
+In case of invalid data during the creation of car. Your code should raise ValueError as mentioned in the below code sample
+Your code is expected to behave as below
+
+>>> from car import Car  
+>>> car = Car(color="Red", max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.acceleration  
+10  
+>>> car.tyre_friction  
+3  
+>>> car.max_speed  
+250  
+>>> car.color  
+Red  
+
+>>> from car import Car  
+>>> car = Car(color="Red", max_speed=-250, acceleration=10, tyre_friction=3)  
+ValueError: Invalid value for max_speed  
+
+# Task2: Starting a Car
+Starting a car should start the engine which will enable the car to accelerate.
+
+>>> from car import Car  
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.start_engine()  
+>>> car.is_engine_started
+True
+
+# Task3: Display car speed
+As the cars move there should be an attribute to know car’s current speed.
+
+When a new car is created it should be at rest
+
+>>> from car import Car  
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.current_speed  
+0  
+
+# Task4: Increasing the speed
+Car Behavior:
+
+On acceleration car speed should increase. Every time the car accelerates its speed should increase by the value of acceleration
+Car can accelerate only when the engine is on
+Any car cannot accelerate more than its max_speed
+Your code is expected to behave as below
+
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.start_engine()  
+>>> car.accelerate()  
+>>> car.current_speed  
+10  
+>>> car.accelerate()  
+>>> car.current_speed  
+20
+...
+...
+...
+>>> car.current_speed
+250
+>>> car.accelerate()  
+>>> car.current_speed
+250
+
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.accelerate()  
+Start the engine to accelerate  
+
+# Task5: Applying Brake
+Behaviour
+
+Decreases the car speed by tyre_friction value
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.start_engine()  
+>>> car.accelerate()  
+>>> car.current_sped  
+10  
+>>> car.apply_brakes()  
+>>> car.current_sped  
+7  
+
+# Task6: Sound Horn
+Behavior
+
+A car should be in start state to sound horn.
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.start_engine()  
+>>> car.sound_horn()  
+"Beep Beep"  
+
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.sound_horn() # Prints
+Start the engine to sound_horn  
+
+# Task7: Stop Car Engine
+Behavior
+
+A car engine should be stopped
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.start_engine()  
+>>> car.is_engine_started
+True
+>>> car.stop_engine()  
+>>> car.is_engine_started
+False
+
+#Task8: Applying Encapsulation
+By binding related attributes & methods as a class we have achieved encapsulation to an extent
+Now add safe access to all the attributes by making them protected attributes and adding getters
+>>> car = Car(max_speed=250, acceleration=10, tyre_friction=3)  
+>>> car.current_speed  # call to getter method
+0  
+>>> car.start_engine()  
+>>> car.accelerate()
+>>> car.current_speed  # call to getter method
+10  
+>>> car.current_speed = 10  
+AttributeError: can't set attribute
+
+Back
+
+
+
+ANSWER:
+
+
 class Car:
     def __init__(self, color=None, max_speed=0, acceleration=0, tyre_friction=0):
         self._color = color
